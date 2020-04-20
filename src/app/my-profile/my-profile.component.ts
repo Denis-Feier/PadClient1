@@ -9,7 +9,14 @@ export class MyProfileComponent implements OnInit {
 
   constructor() { }
 
+  private profilePic: string;
+
   ngOnInit(): void {
+    this.profilePic = 'assets/images/male-profile-picture-vector-1862205.jpg';
+  }
+
+  getProfilePic(): string {
+    return this.profilePic;
   }
 
 }

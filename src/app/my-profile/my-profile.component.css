@@ -1,0 +1,21 @@
+.details li {
+  list-style: none;
+}
+li {
+  margin-bottom:10px;
+
+}
+
+.profile {
+  position: center;
+  margin-top: 100px;
+  background-color: rgba(200, 255, 200, 0.5);
+}
+
+.profile-content {
+  color: red;
+}
+
+.container {
+  text-align: center;
+}
