@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { map, shareReplay } from 'rxjs/operators';
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.css']
 })
-export class MainNavComponent {
+export class MainNavComponent implements OnInit{
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -16,6 +16,15 @@ export class MainNavComponent {
       shareReplay()
     );
 
+  private picPathDefault: string;
+
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+  ngOnInit(): void {
+    this.picPathDefault = 'assets/images/male-profile-picture-vector-1862205.jpg';
+  }
+
+  getDisplayPic(): string {
+    return this.picPathDefault;
+  }
 }

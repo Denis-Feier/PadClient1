@@ -5,8 +5,8 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu Mare</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item >Link 1</a>
-      <a mat-list-item >Link 2</a>
+      <a mat-list-item class="app-link" [routerLink]="'/main/'" [routerLinkActive]="'active-link'" [routerLinkActiveOptions]="{exact: true}">Profile</a>
+      <a mat-list-item class="app-link" [routerLink]="'/main/menu'" [routerLinkActive]="'active-link'" >Menu</a>
       <a mat-list-item >Link 3</a>
     </mat-nav-list>
   </mat-sidenav>
@@ -22,7 +22,7 @@
       </button>
       <span>PadClient1</span>
       <span class="spacer-flex"></span>
-      <img class="rounded-circle m-3 d-block avatar" src="https://cdn1.vectorstock.com/i/thumb-large/22/05/male-profile-picture-vector-1862205.jpg" alt="not found"/>
+      <img class="rounded-circle m-3 d-block avatar" [src]="getDisplayPic()" alt="not found"/>
       <button class="btn btn-danger">Logout</button>
     </mat-toolbar>
     <router-outlet></router-outlet>

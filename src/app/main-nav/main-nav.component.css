@@ -23,3 +23,7 @@
 .active-link {
   background-color: green;
 }
+
+.app-link:hover {
+  background-color: darkgreen;
+}
