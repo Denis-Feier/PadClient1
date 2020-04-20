@@ -1,13 +1,14 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu Mare</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item class="app-link" [routerLink]="'/main/'" [routerLinkActive]="'active-link'" [routerLinkActiveOptions]="{exact: true}">Profile</a>
-      <a mat-list-item class="app-link" [routerLink]="'/main/menu'" [routerLinkActive]="'active-link'" >Menu</a>
-      <a mat-list-item >Link 3</a>
+      <a mat-list-item class="app-link" [routerLink]="'/main/'" [routerLinkActive]="'active-link'"
+         [routerLinkActiveOptions]="{exact: true}">Profile</a>
+      <a mat-list-item class="app-link" [routerLink]="'/main/menu'" [routerLinkActive]="'active-link'">Menu</a>
+      <a mat-list-item>Link 3</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -25,6 +26,8 @@
       <img class="rounded-circle m-3 d-block avatar" [src]="getDisplayPic()" alt="not found"/>
       <button class="btn btn-danger">Logout</button>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <div class="my-background">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -10,5 +10,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .avatar {
   width: available;
   height: 100%;
+}
 
+.my-background {
+  background-image: url("assets/images/restaurant-1587381150409-6820.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: auto;
+  height: 100%;
+  font-family: sans-serif;
 }
