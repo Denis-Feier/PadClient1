@@ -1,0 +1,10 @@
+
+.text-gray {
+  color: #aaa;
+}
+
+ul {
+  overflow: visible;
+  overflow-y:scroll;
+  max-height: 570px;
+}
