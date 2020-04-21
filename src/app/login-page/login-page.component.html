@@ -6,7 +6,7 @@
           <h3>{{isSignIn ? "Sign In" : "Sign Up"}}</h3>
         </div>
         <div class="card-body" *ngIf="isSignIn">
-          <form>
+          <form #signInForm="ngForm" (ngSubmit)="onSignIn(signInForm)">
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">
@@ -17,7 +17,7 @@
                   </svg>
                 </span>
               </div>
-              <input type="text" class="form-control" placeholder="username">
+              <input type="text" class="form-control" placeholder="username" name="username" ngModel required>
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
@@ -30,21 +30,21 @@
                   </svg>
                 </span>
               </div>
-              <input type="password" class="form-control" placeholder="password">
+              <input type="password" class="form-control" placeholder="password" name="password" ngModel required>
             </div>
             <div class="row align-items-center remember">
-              <input type="checkbox">Remember Me
+              <input type="checkbox" value="false" name="remember" ngModel>Remember Me
             </div>
             <div class="form-group">
               <hr>
               <button class="btn login_btn"
                       (click)="switchMode()">Switch to {{this.isSignIn ? "Sign Up" : "Sign In"}}</button>
-              <button type="submit" class="btn float-right login_btn">Sign In</button>
+              <button type="submit" class="btn float-right login_btn" [disabled]="!signInForm.valid">Sign In</button>
             </div>
           </form>
         </div>
         <div class="card-body" *ngIf="!isSignIn">
-          <form>
+          <form #signUpForm="ngForm" (ngSubmit)="onSignUp(signUpForm)">
             <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">
@@ -55,7 +55,7 @@
                   </svg>
                 </span>
               </div>
-              <input type="text" class="form-control" placeholder="username">
+              <input type="text" class="form-control" placeholder="username" name="username" ngModel required>
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
@@ -68,7 +68,7 @@
                     </svg>
                 </span>
               </div>
-              <input type="email" class="form-control" placeholder="email">
+              <input type="email" class="form-control" placeholder="email" name="email" ngModel required>
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
@@ -81,7 +81,7 @@
                   </svg>
                 </span>
               </div>
-              <input type="password" class="form-control" placeholder="password">
+              <input type="password" class="form-control" placeholder="password" name="password" ngModel required>
             </div>
             <div class="input-group form-group">
               <div class="input-group-prepend">
@@ -97,7 +97,7 @@
                   </svg>
                 </span>
               </div>
-              <input type="password" class="form-control" placeholder="re-password">
+              <input type="password" class="form-control" placeholder="re-password" name="password2" ngModel required>
             </div>
             <div class="form-group">
               <div class="row">
@@ -105,7 +105,9 @@
                   <hr>
                   <button class="btn login_btn"
                           (click)="switchMode()">Switch to {{this.isSignIn ? "Sign Up" : "Sign In"}}</button>
-                  <button type="submit" class="btn float-right login_btn">Sign Up</button>
+                  <button type="submit" class="btn float-right login_btn"
+                          [disabled]="!signUpForm.valid || signUpForm.value.password !== signUpForm.value.password2"
+                  >Sign Up</button>
                 </div>
               </div>
             </div>

@@ -1,5 +1,3 @@
-/* Made with love by Mutiullah Samim*/
-
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 .my-body {
@@ -76,6 +74,11 @@ input:focus{
 .login_btn{
   color: black;
   background-color: green;
+}
+
+.login_btn:disabled {
+  opacity: 1;
+  background-color: red;
 }
 
 .login_btn:hover{

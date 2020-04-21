@@ -14,6 +14,7 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.component';
 import {RouterModule, Routes} from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
+import {FormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

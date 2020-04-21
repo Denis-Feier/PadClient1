@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',
@@ -17,5 +18,18 @@ export class LoginPageComponent implements OnInit {
 
   switchMode() {
     this.isSignIn = !this.isSignIn;
+  }
+
+  onSignIn(signInForm: NgForm) {
+    console.log(signInForm);
+  }
+
+  onSignUp(signUpForm: NgForm) {
+    console.log(signUpForm);
+    console.log(this.passwordMatch(signUpForm));
+  }
+
+  passwordMatch(signUpForm: NgForm): boolean {
+    return signUpForm.value.password === signUpForm.value.password2;
   }
 }
