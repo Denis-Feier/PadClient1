@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
+  isSignIn: boolean;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.isSignIn = true;
   }
 
+  switchMode() {
+    this.isSignIn = !this.isSignIn;
+  }
 }
