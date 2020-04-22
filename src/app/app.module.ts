@@ -15,6 +15,7 @@ import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.compo
 import {RouterModule, Routes} from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     MatIconModule,
     MatListModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

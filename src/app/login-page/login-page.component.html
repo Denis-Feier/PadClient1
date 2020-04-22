@@ -99,14 +99,17 @@
               </div>
               <input type="password" class="form-control" placeholder="re-password" name="password2" ngModel required>
             </div>
+            <div class="error-mess" *ngIf="error">
+              <p>* {{ error }}</p>
+            </div>
             <div class="form-group">
               <div class="row">
                 <div class="container">
-                  <hr>
+                  <hr *ngIf="!error">
                   <button class="btn login_btn"
                           (click)="switchMode()">Switch to {{this.isSignIn ? "Sign Up" : "Sign In"}}</button>
                   <button type="submit" class="btn float-right login_btn"
-                          [disabled]="!signUpForm.valid || signUpForm.value.password !== signUpForm.value.password2"
+                          [disabled]="!signUpForm.valid"
                   >Sign Up</button>
                 </div>
               </div>

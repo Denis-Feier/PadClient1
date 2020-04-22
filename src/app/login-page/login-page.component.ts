@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {AuthService} from '../service/auth.service';
+import {catchError, tap} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-login-page',
@@ -9,8 +12,10 @@ import {NgForm} from '@angular/forms';
 export class LoginPageComponent implements OnInit {
 
   isSignIn: boolean;
+  error: string;
 
-  constructor() { }
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit(): void {
     this.isSignIn = true;
@@ -22,11 +27,33 @@ export class LoginPageComponent implements OnInit {
 
   onSignIn(signInForm: NgForm) {
     console.log(signInForm);
+    this.authService.login();
   }
 
   onSignUp(signUpForm: NgForm) {
-    console.log(signUpForm);
-    console.log(this.passwordMatch(signUpForm));
+
+    const username = signUpForm.value.username;
+    const password = signUpForm.value.password;
+    const email = signUpForm.value.email;
+    if (password.length >= 6) {
+      if (this.passwordMatch(signUpForm)) {
+        this.authService.signUp({
+          username,
+          email,
+          password
+        }).subscribe(
+          value => console.log(value),
+          error => {
+            this.error = error.error.message;
+            console.log(error.error.message);
+          }
+        );
+      } else {
+        this.error = 'Pass and re-pass must match';
+      }
+    } else {
+      this.error = 'Pass must be 6 length or more';
+    }
   }
 
   passwordMatch(signUpForm: NgForm): boolean {
