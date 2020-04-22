@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from '../service/auth.service';
 import {catchError, tap} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class LoginPageComponent implements OnInit {
   errorSignUp: string;
   errorSignIn: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.isSignIn = true;
@@ -34,6 +35,12 @@ export class LoginPageComponent implements OnInit {
     this.authService.login({
       username,
       password
+    }).subscribe(resp => {
+      console.log(resp);
+      this.router.navigate(['/main']);
+    }, error => {
+      const reqError = error.error.message;
+      this.errorSignIn = reqError;
     });
   }
 

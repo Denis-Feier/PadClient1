@@ -1,14 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import {Router} from '@angular/router';
+import {AuthService} from '../service/auth.service';
+import {User} from '../model/user.model';
 
 @Component({
   selector: 'app-main-nav',
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.css']
 })
-export class MainNavComponent implements OnInit{
+export class MainNavComponent implements OnInit, OnDestroy {
+
+  user: User;
+  private picPathDefault: string;
+  displayPic: string;
+  subscriptionAuthService: Subscription;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -16,15 +24,26 @@ export class MainNavComponent implements OnInit{
       shareReplay()
     );
 
-  private picPathDefault: string;
-
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.picPathDefault = 'assets/images/male-profile-picture-vector-1862205.jpg';
+    this.subscriptionAuthService = this.authService.user
+      .subscribe( user => {
+        this.user = user;
+        if (user.pic) {
+          this.displayPic = user.pic;
+        } else {
+          this.displayPic = this.picPathDefault;
+        }
+      });
   }
 
-  getDisplayPic(): string {
-    return this.picPathDefault;
+  onLogout() {
+    this.authService.logout();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionAuthService.unsubscribe();
   }
 }

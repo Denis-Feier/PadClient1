@@ -2,16 +2,16 @@
   <div class="jumbotron profile">
     <div class="row">
       <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
-        <img [src]="getProfilePic()" alt="stack photo" class="img profile-content">
+        <img [src]="displayPic" alt="stack photo" class="img profile-content">
       </div>
       <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
         <div class="container" style="border-bottom:1px solid black">
-          <h2 class="profile-content">John Doe</h2>
+          <h2 class="profile-content">{{user.userName}}</h2>
         </div>
         <hr>
         <ul class="container details">
           <li><p class="profile-content"><span class="glyphicon glyphicon-envelope one profile-content" style="width:50px;">
-            </span>somerandom@email.com</p></li>
+            </span>{{user.email}}</p></li>
         </ul>
       </div>
     </div>

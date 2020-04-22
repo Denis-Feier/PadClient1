@@ -5,6 +5,7 @@ export class User {
     public userName: string,
     public pic: string,
     public email: string,
+    public role: string,
     // tslint:disable-next-line:variable-name
     private _token: string,
     // tslint:disable-next-line:variable-name

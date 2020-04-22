@@ -1,22 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {User} from '../model/user.model';
+import {Subscription} from 'rxjs';
+import {AuthService} from '../service/auth.service';
 
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
   styleUrls: ['./my-profile.component.css']
 })
-export class MyProfileComponent implements OnInit {
+export class MyProfileComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  user: User;
+  private picPathDefault: string;
+  displayPic: string;
+  subscriptionAuthService: Subscription;
 
-  private profilePic: string;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.profilePic = 'assets/images/male-profile-picture-vector-1862205.jpg';
+    this.picPathDefault = 'assets/images/male-profile-picture-vector-1862205.jpg';
+    this.subscriptionAuthService = this.authService.user
+      .subscribe( user => {
+        this.user = user;
+        if (user.pic) {
+          this.displayPic = user.pic;
+        } else {
+          this.displayPic = this.picPathDefault;
+        }
+      });
   }
 
-  getProfilePic(): string {
-    return this.profilePic;
+  ngOnDestroy(): void {
+    this.subscriptionAuthService.unsubscribe();
   }
 
 }

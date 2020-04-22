@@ -16,14 +16,15 @@ import {RouterModule, Routes} from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {AuthGuard} from './service/auth.guard';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginPageComponent},
   {path: 'main', component: MainNavComponent, children: [
-      {path: '', component: MyProfileComponent},
-      {path: 'menu', component: RestaurantMenuComponent}
-    ]},
+      {path: '', component: RestaurantMenuComponent},
+      {path: 'profile', component: MyProfileComponent}
+    ], canActivate: [AuthGuard]},
   {path: '**', redirectTo: 'login'}
 ];
 

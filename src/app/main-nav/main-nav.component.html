@@ -5,9 +5,12 @@
                [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu Mare</mat-toolbar>
     <mat-nav-list>
+      <a mat-list-item class="app-link" [routerLink]="'/main/profile'" [routerLinkActive]="'active-link'"
+         [routerLinkActiveOptions]="{exact: true}"
+          >Profile</a>
       <a mat-list-item class="app-link" [routerLink]="'/main/'" [routerLinkActive]="'active-link'"
-         [routerLinkActiveOptions]="{exact: true}">Profile</a>
-      <a mat-list-item class="app-link" [routerLink]="'/main/menu'" [routerLinkActive]="'active-link'">Menu</a>
+         [routerLinkActiveOptions]="{exact: true}"
+          >Menu</a>
       <a mat-list-item>Link 3</a>
     </mat-nav-list>
   </mat-sidenav>
@@ -23,8 +26,9 @@
       </button>
       <span>PadClient1</span>
       <span class="spacer-flex"></span>
-      <img class="rounded-circle m-3 d-block avatar" [src]="getDisplayPic()" alt="not found"/>
-      <button class="btn btn-danger">Logout</button>
+      <h5>{{user.userName}}</h5>
+      <img class="rounded-circle m-3 d-block avatar" [src]="displayPic" alt="not found"/>
+      <button class="btn btn-danger" (click)="onLogout()">Logout</button>
     </mat-toolbar>
     <div class="my-background">
       <router-outlet></router-outlet>
