@@ -22,8 +22,10 @@ export class AuthService {
     });
   }
 
-  login() {
-    // this.http.get('http://localhost:9191/email/denisfeier98@yahoo.com')
-    //   .subscribe(value => console.log(value));
+  login(credential: {username: string, password: string}) {
+    return this.http.post(this.apiUrl + 'authenticate', {
+      userName: credential.username,
+      password: credential.password
+    });
   }
 }

@@ -12,26 +12,32 @@ import {catchError, tap} from 'rxjs/operators';
 export class LoginPageComponent implements OnInit {
 
   isSignIn: boolean;
-  error: string;
+  errorSignUp: string;
+  errorSignIn: string;
 
-  constructor(private authService: AuthService) {
-  }
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.isSignIn = true;
   }
 
   switchMode() {
+    this.errorSignUp = null;
+    this.errorSignIn = null;
     this.isSignIn = !this.isSignIn;
   }
 
   onSignIn(signInForm: NgForm) {
     console.log(signInForm);
-    this.authService.login();
+    const username = signInForm.value.username;
+    const password = signInForm.value.password;
+    this.authService.login({
+      username,
+      password
+    });
   }
 
   onSignUp(signUpForm: NgForm) {
-
     const username = signUpForm.value.username;
     const password = signUpForm.value.password;
     const email = signUpForm.value.email;
@@ -44,19 +50,19 @@ export class LoginPageComponent implements OnInit {
         }).subscribe(
           value => console.log(value),
           error => {
-            this.error = error.error.message;
+            this.errorSignUp = error.error.message;
             console.log(error.error.message);
           }
         );
       } else {
-        this.error = 'Pass and re-pass must match';
+        this.errorSignUp = 'Pass and re-pass must match';
       }
     } else {
-      this.error = 'Pass must be 6 length or more';
+      this.errorSignUp = 'Pass must be 6 length or more';
     }
   }
 
-  passwordMatch(signUpForm: NgForm): boolean {
+  private passwordMatch(signUpForm: NgForm): boolean {
     return signUpForm.value.password === signUpForm.value.password2;
   }
 }
