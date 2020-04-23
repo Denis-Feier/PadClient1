@@ -15,8 +15,9 @@ import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.compo
 import {RouterModule, Routes} from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './service/auth.guard';
+import {AuthInterceptorService} from './service/auth-interceptor.service';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -49,7 +50,13 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
