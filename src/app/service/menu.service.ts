@@ -13,7 +13,7 @@ export class MenuService {
   constructor(private http: HttpClient) {}
 
   getAllProducts() {
-    return this.http.get(this.apiUrl + 'product/all');
+    return this.http.get<Array<Product>>(this.apiUrl + 'product/all');
   }
 
 }

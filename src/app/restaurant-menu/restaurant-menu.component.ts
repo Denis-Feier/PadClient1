@@ -1,19 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MenuService} from '../service/menu.service';
+import {Product} from '../model/product.model';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-restaurant-menu',
   templateUrl: './restaurant-menu.component.html',
   styleUrls: ['./restaurant-menu.component.css']
 })
-export class RestaurantMenuComponent implements OnInit {
+export class RestaurantMenuComponent implements OnInit, OnDestroy {
 
-  constructor(private menuService: MenuService) { }
+  products: Product[];
+  getAllProductsSubscription: Subscription;
+
+  constructor(private menuService: MenuService) {}
 
   ngOnInit(): void {
-    this.menuService.getAllProducts().subscribe(value => {
-      console.log(value);
-    });
+    this.getAllProductsSubscription = this.menuService.getAllProducts()
+      .subscribe(resp => {
+        console.log(resp);
+        this.products = resp;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.getAllProductsSubscription.unsubscribe();
   }
 
 }

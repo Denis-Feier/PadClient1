@@ -1,67 +1,28 @@
 <div class="container py-5">
   <div class="row">
     <div class="col-lg-11 mx-auto">
-      <!-- List group-->
       <ul class="list-group shadow">
-        <!-- list group item-->
-        <li class="list-group-item">
-          <!-- Custom content-->
+
+        <li class="list-group-item" *ngFor="let prod of products">
           <div class="media align-items-lg-center flex-column flex-lg-row p-3">
             <div class="media-body order-2 order-lg-1">
-              <p class="font-italic text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Suscipit fuga autem maiores necessitatibus.</p>
+              <h3 class="font-italic text-muted mb-0">
+                <strong>{{prod.productName}}</strong>
+              </h3>
+              <p class="font-italic text-muted mb-0" *ngIf="prod.food">
+                <strong>Ingredients: </strong>{{prod.ingredients}}
+              </p>
+              <p class="font-italic text-muted mb-0">
+                <strong>Price: </strong>{{prod.price | currency}}
+                <strong> / </strong> {{prod.quantity}} {{prod.food ? "g": "ml"}}
+              </p>
             </div>
-            <img src="https://res.cloudinary.com/mhmd/image/upload/v1556485076/shoes-1_gthops.jpg"
-                 alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+            <img [src]="prod.pic"
+                 alt="Generic placeholder image" class="ml-lg-5 order-1 order-lg-2 prod-pic">
           </div>
-          <!-- End -->
         </li>
-        <!-- End -->
-        <!-- list group item-->
-        <li class="list-group-item">
-          <!-- Custom content-->
-          <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-            <div class="media-body order-2 order-lg-1">
-              <p class="font-italic text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Suscipit fuga autem maiores necessitatibus.</p>
-            </div>
-            <img src="https://res.cloudinary.com/mhmd/image/upload/v1556485077/shoes-3_rk25rt.jpg"
-                 alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-          </div>
-          <!-- End -->
-        </li>
-        <!-- End -->
-        <!-- list group item -->
-        <li class="list-group-item">
-          <!-- Custom content-->
-          <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-            <div class="media-body order-2 order-lg-1">
-              <p class="font-italic text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Suscipit fuga autem maiores necessitatibus.</p>
-            </div>
-            <img src="https://res.cloudinary.com/mhmd/image/upload/v1556485078/shoes-2_g4qame.jpg"
-                 alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-          </div>
-          <!-- End -->
-        </li>
-        <!-- End -->
-        <!-- list group item -->
-        <li class="list-group-item">
-          <!-- Custom content-->
-          <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-            <div class="media-body order-2 order-lg-1">
-              <h5 class="mt-0 font-weight-bold mb-2">Awesome product</h5>
-              <p class="font-italic text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Suscipit fuga autem maiores necessitatibus.</p>
-            </div>
-            <img src="https://res.cloudinary.com/mhmd/image/upload/v1556485078/shoes-4_vgfjy9.jpg"
-                 alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-          </div>
-          <!-- End -->
-        </li>
-        <!-- End -->
+
       </ul>
-      <!-- End -->
     </div>
   </div>
 </div>
