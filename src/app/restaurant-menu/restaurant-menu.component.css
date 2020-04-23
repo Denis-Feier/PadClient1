@@ -5,12 +5,29 @@
 ul {
   overflow: visible;
   overflow-y:scroll;
-  max-height: 570px;
+  max-height: 500px;
 }
 
 .prod-pic {
-  max-width: 150px;
-  max-height: 150px;
-  min-height: 150px;
-  min-width: 150px;
+  max-width: 100px;
+  max-height: 100px;
+  min-height: 100px;
+  min-width: 100px;
+}
+
+.submit-btn {
+  margin-left: 6%;
+}
+
+.quantity-input {
+  float: right;
+  width:  50px;
+  margin-right: 10%;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+
+  opacity: 1;
+
 }

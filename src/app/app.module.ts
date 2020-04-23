@@ -14,7 +14,7 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.component';
 import {RouterModule, Routes} from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './service/auth.guard';
 import {AuthInterceptorService} from './service/auth-interceptor.service';
@@ -48,7 +48,8 @@ const appRoutes: Routes = [
     MatListModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
