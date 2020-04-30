@@ -46,6 +46,7 @@ export class RestaurantMenuComponent implements OnInit, OnDestroy {
     for (let i = 0; i < v.length; i++) {
       this.orderItems[i].quantity = v[i].value;
     }
-    console.log(this.orderItems);
+    this.allInputs.setValue(new Array<number>(v.length).fill(0));
   }
+
 }

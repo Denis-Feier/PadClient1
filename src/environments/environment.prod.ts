@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  APIPrefix: 'http://localhost:9191/',
+  APIPrefix: 'https://padserver1.herokuapp.com/',
 };
