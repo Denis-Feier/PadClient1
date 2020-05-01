@@ -22,9 +22,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         }
         const modifiedReq = req.clone({
           headers: req.headers
-            .append('Authorization', user.token)
-            // // .append('Sec-Fetch-Mode', 'cors')
-            //  .append('Content-Type', 'application/json')
+            .append('Authorization', 'Bearer ' + user.token)
         });
         return next.handle(modifiedReq);
       })
@@ -32,12 +30,3 @@ export class AuthInterceptorService implements HttpInterceptor {
   }
 
 }
-
-// Accept-Encoding: gzip, deflate, br
-// Accept-Language: en-US,en;q=0.9
-// Cache-Control: no-cache
-// Connection: keep-alive
-// Content-Length: 40
-// Pragma: no-cache
-// Sec-Fetch-Dest: empty
-// Sec-Fetch-Site: same-site

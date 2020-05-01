@@ -62,13 +62,16 @@ export class AuthService {
   }
 
   logout() {
-    this.user.next(null);
-    this.router.navigate(['/login']);
-    localStorage.removeItem('userData');
-    if (this.tokenExpirationTimer) {
-      clearTimeout(this.tokenExpirationTimer);
-    }
-    this.tokenExpirationTimer = null;
+    this.http.delete(this.apiUrl + 'user/logout').pipe(tap(_ => {
+      this.user.next(null);
+      this.router.navigate(['/login']);
+      localStorage.removeItem('userData');
+      if (this.tokenExpirationTimer) {
+        clearTimeout(this.tokenExpirationTimer);
+      }
+      this.tokenExpirationTimer = null;
+    })).subscribe();
+
   }
 
   autoLogin() {
