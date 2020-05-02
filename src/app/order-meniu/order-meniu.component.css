@@ -20,20 +20,26 @@ ul {
 }
 
 .quantity-input {
-  float: right;
   width:  50px;
-  margin-right: 10%;
 }
 
 input[type=number] {
   border: 1px solid gray;
   border-radius: 2px;
+  padding: 4px;
 }
-
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-
   opacity: 1;
+}
 
+.total-price {
+  background-color: cornflowerblue;
+  margin-right: 6%;
+  color: black;
+}
+
+.controls {
+  margin: 1%;
 }

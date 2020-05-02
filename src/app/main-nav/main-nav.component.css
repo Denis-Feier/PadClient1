@@ -27,3 +27,7 @@
 .app-link:hover {
   background-color: darkgreen;
 }
+
+.span-right {
+  float: right;
+}

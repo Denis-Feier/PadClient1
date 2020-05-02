@@ -18,13 +18,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './service/auth.guard';
 import {AuthInterceptorService} from './service/auth-interceptor.service';
+import { OrderMeniuComponent } from './order-meniu/order-meniu.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginPageComponent},
   {path: 'main', component: MainNavComponent, children: [
       {path: '', component: RestaurantMenuComponent},
-      {path: 'profile', component: MyProfileComponent}
+      {path: 'profile', component: MyProfileComponent},
+      {path: 'order', component: OrderMeniuComponent}
     ], canActivate: [AuthGuard]},
   {path: '**', redirectTo: 'login'}
 ];
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     MainNavComponent,
     MyProfileComponent,
     RestaurantMenuComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    OrderMeniuComponent
   ],
   imports: [
     BrowserModule,

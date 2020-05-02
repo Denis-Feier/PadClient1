@@ -1,0 +1,34 @@
+<div class="container py-3">
+  <button class="btn btn-primary pull-left submit-btn" (click)="onSubmit()">Send Order</button>
+  <span class="pull-right total-price"><h2>Total Price: {{totalPrice | currency}}</h2></span>
+</div>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-11 mx-auto">
+      <ul class="list-group shadow">
+        <li class="list-group-item" *ngFor="let prod of orderItems; index as i">
+          <div class="media align-items-lg-center flex-column flex-md-row p-0">
+            <div class="media-body order-1 order-lg-1">
+              <h3 class="font-italic text-muted mb-0">
+                <strong>{{prod.product.productName}}</strong>
+              </h3>
+              <p class="font-italic text-muted mb-0">
+                <strong>Price: </strong>{{prod.product.price * prod.quantity | currency}}
+              </p>
+              <div>
+                <button class="btn btn-danger" (click)="onDelete(i)">Delete</button>
+                <span>
+                  <button class="btn btn-success controls" (click)="onUpdate(i)">Update</button>
+                  <input class="quantity-input controls" [value]="prod.quantity"
+                         type="number" id="quantity" name="quantity" min="1" [(ngModel)]="allInputs[i]">
+                </span>
+              </div>
+            </div>
+            <img [src]="prod.product.pic"
+                 alt="Generic placeholder image" class="ml-lg-5 order-1 order-lg-2 prod-pic">
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

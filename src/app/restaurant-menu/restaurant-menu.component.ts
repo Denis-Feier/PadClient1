@@ -4,6 +4,7 @@ import {Product} from '../model/product.model';
 import {Subscription} from 'rxjs';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {OrderItem} from '../model/orderItem.model';
+import {OrdersService} from '../service/orders.service';
 
 @Component({
   selector: 'app-restaurant-menu',
@@ -17,7 +18,8 @@ export class RestaurantMenuComponent implements OnInit, OnDestroy {
   allInputs = new FormArray([]);
   orderItems: OrderItem[] = [];
 
-  constructor(private menuService: MenuService) {}
+  constructor(private menuService: MenuService,
+              private ordersService: OrdersService) {}
 
   ngOnInit(): void {
     this.getAllProductsSubscription = this.menuService.getAllProducts()
@@ -47,6 +49,8 @@ export class RestaurantMenuComponent implements OnInit, OnDestroy {
       this.orderItems[i].quantity = v[i].value;
     }
     this.allInputs.setValue(new Array<number>(v.length).fill(0));
+    const noZero = this.orderItems.filter(item => item.quantity !== 0)
+    this.ordersService.newOrder(noZero.slice());
   }
 
 }

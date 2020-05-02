@@ -11,7 +11,11 @@
       <a mat-list-item class="app-link" [routerLink]="'/main/'" [routerLinkActive]="'active-link'"
          [routerLinkActiveOptions]="{exact: true}"
           >Menu</a>
-      <a mat-list-item>Link 3</a>
+      <a mat-list-item class="app-link" [routerLink]="'/main/order'" [routerLinkActive]="'active-link'"
+         [routerLinkActiveOptions]="{exact: true}"
+      >Order <span class="spacer-flex"></span>
+        <span class="span-right">{{nrOfOrders ? nrOfOrders : 0}}</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
