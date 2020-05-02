@@ -47,7 +47,7 @@ export class AuthService {
   private authHandler(crd: AuthResp) {
     const expiresIn = jwt_decode(crd.token).exp;
     console.log(expiresIn);
-    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+    const expirationDate = new Date(expiresIn * 1000);
     const user = new User(crd.id, crd.userName, crd.pic, crd.email, crd.role, crd.token, expirationDate);
     this.user.next(user);
     this.autoLogout(expiresIn * 1000);
@@ -56,9 +56,11 @@ export class AuthService {
   }
 
   autoLogout(exp: number) {
-    // this.tokenExpirationTimer = setTimeout(() => {
-    //   this.logout();
-    // }, exp);
+    const expTime = exp - new Date().getTime();
+    console.log("Auto logout at: " + expTime);
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout();
+    }, expTime);
   }
 
   logout() {
