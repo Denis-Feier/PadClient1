@@ -5,7 +5,7 @@
                [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu Mare</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item class="app-link" [routerLink]="'/main/profile'" [routerLinkActive]="'active-link'"
+      <a mat-list-item class="app-link" [routerLink]="'/main/profile/' + user.id" [routerLinkActive]="'active-link'"
          [routerLinkActiveOptions]="{exact: true}"
           >Profile</a>
       <a mat-list-item class="app-link" [routerLink]="'/main/'" [routerLinkActive]="'active-link'"

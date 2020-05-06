@@ -19,13 +19,18 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './service/auth.guard';
 import {AuthInterceptorService} from './service/auth-interceptor.service';
 import { OrderMeniuComponent } from './order-meniu/order-meniu.component';
+import { ShowOrdersComponent } from './my-profile/show-orders/show-orders.component';
+import { ShowItemsComponent } from './my-profile/show-items/show-items.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginPageComponent},
   {path: 'main', component: MainNavComponent, children: [
       {path: '', component: RestaurantMenuComponent},
-      {path: 'profile', component: MyProfileComponent},
+      {path: 'profile/:uid', component: MyProfileComponent, children: [
+          {path: '', component: ShowOrdersComponent},
+          {path: 'items/:oid', component: ShowItemsComponent}
+        ]},
       {path: 'order', component: OrderMeniuComponent}
     ], canActivate: [AuthGuard]},
   {path: '**', redirectTo: 'login'}
@@ -38,7 +43,9 @@ const appRoutes: Routes = [
     MyProfileComponent,
     RestaurantMenuComponent,
     LoginPageComponent,
-    OrderMeniuComponent
+    OrderMeniuComponent,
+    ShowOrdersComponent,
+    ShowItemsComponent,
   ],
   imports: [
     BrowserModule,

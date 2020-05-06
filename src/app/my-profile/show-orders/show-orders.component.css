@@ -1,0 +1,7 @@
+.list-orders {
+  overflow: visible;
+  overflow-y: scroll;
+  max-height: 250px;
+  color: black;
+  /*max-width: 300px;*/
+}

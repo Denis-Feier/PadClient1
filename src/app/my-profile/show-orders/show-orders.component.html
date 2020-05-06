@@ -1,0 +1,8 @@
+<div class="list-group list-orders">
+  <a class="list-group-item" *ngFor="let i of orderItems" [routerLink]="'items/' + i.oid">
+    <div>Total Price: {{i.totalPrice}}</div>
+    <div>Posted: {{i.data | date: 'medium'}}</div>
+    <div>Nr of items: {{i.nrItems}}</div>
+    <div>Status: {{i.state}}</div>
+  </a>
+</div>

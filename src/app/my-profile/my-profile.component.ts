@@ -2,6 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {User} from '../model/user.model';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../service/auth.service';
+import {OrdersService} from '../service/orders.service';
+import {OrderDB} from '../model/order-db.model';
+
 
 @Component({
   selector: 'app-my-profile',

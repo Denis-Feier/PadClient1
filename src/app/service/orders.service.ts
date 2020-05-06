@@ -4,6 +4,8 @@ import {Observable, Subject} from 'rxjs';
 import {OrderPost} from '../model/orderPost.model';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {OrderDB} from '../model/order-db.model';
+import {Product} from '../model/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -57,4 +59,11 @@ export class OrdersService {
     this.myOrderItemNr.next(0);
   }
 
+  getOrders(uid: number) {
+    return this.http.get<OrderDB[]>(this.apiUrl + 'order/user/' + uid);
+  }
+
+  getProducts(pid: number) {
+    return this.http.get<Product[]>(this.apiUrl + `order/${pid}/product`);
+  }
 }

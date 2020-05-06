@@ -1,0 +1,11 @@
+<ul class="list-group list-orders">
+  <li class="list-group-item" *ngFor="let prod of products">
+    <span><strong class="pull-left">{{prod.productName}}</strong>
+      <img class="ml-lg-5 order-1 order-lg-2 prod-pic pull-right" [src]="prod.pic">
+    </span>
+    <div>
+      Price: {{prod.price}} / {{prod.quantity}} {{prod.food ? 'g' :'ml'}}
+    </div>
+  </li>
+
+</ul>

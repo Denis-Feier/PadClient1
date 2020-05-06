@@ -1,0 +1,14 @@
+.list-orders {
+  overflow: visible;
+  overflow-y: scroll;
+  max-height: 250px;
+  color: black;
+  /*max-width: 300px;*/
+}
+
+.prod-pic {
+  max-width: 100px;
+  max-height: 100px;
+  min-height: 100px;
+  min-width: 100px;
+}
