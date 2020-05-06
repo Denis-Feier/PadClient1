@@ -1,6 +1,10 @@
 <div class="container py-3">
-  <button class="btn btn-primary pull-left submit-btn" (click)="onSubmit()">Send Order</button>
-  <span class="pull-right total-price"><h2>Total Price: {{totalPrice | currency}}</h2></span>
+  <button class="btn btn-primary pull-left submit-btn"
+          *ngIf="orderItems.length !== 0"
+          (click)="onSubmit()">Send Order
+  </button>
+  <span *ngIf="orderItems.length !== 0"
+        class="pull-right total-price"><h2>Total Price: {{totalPrice | currency}}</h2></span>
 </div>
 <div class="container py-5">
   <div class="row">
@@ -30,5 +34,11 @@
         </li>
       </ul>
     </div>
+  </div>
+</div>
+
+<div class="card no-items" style="text-align: center" *ngIf="orderItems.length === 0">
+  <div class="card-body">
+    <h1 class="card-title" style="color: red">No items</h1>
   </div>
 </div>

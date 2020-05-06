@@ -43,3 +43,9 @@ input[type=number]::-webkit-outer-spin-button {
 .controls {
   margin: 1%;
 }
+
+.no-items {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
